@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Neo4j SSE Book Stream</title>
+        <style> 
+            body { 
+                font-family: system-ui, -apple-system, sans-serif; 
+                max-width: 800px; 
+                margin: 50px auto; 
+                padding: 20px; 
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                min-height: 100vh; 
+            } 
+            h1 { 
+                color: white; 
+                text-align: center; 
+            } 
+            .container { 
+                background: white; 
+                border-radius: 12px; 
+                padding: 30px; 
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            } 
+            button { 
+                background: #667eea; 
+                color: white; 
+                border: none; 
+                padding: 12px 24px; 
+                border-radius: 6px; 
+                font-size: 16px; 
+                cursor: pointer; 
+                margin-bottom: 20px; 
+            } 
+            button:hover { 
+                background: #5a67d8; 
+            } 
+            button:disabled { 
+                background: #cbd5e0; 
+                cursor: not-allowed; 
+            } 
+            .book { 
+                padding: 15px; 
+                margin: 10px 0; 
+                border-left: 4px solid #667eea; 
+                background: #f7fafc; 
+                border-radius: 4px; 
+                animation: slideIn 0.5s ease; 
+            } 
+            @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } } 
+            .book-title { font-weight: bold; color: #2d3748; font-size: 18px; } 
+            .book-meta { color: #718096; font-size: 14px; margin-top: 5px; } 
+            #status { text-align: center; padding: 10px; margin-bottom: 20px; border-radius: 6px; } 
+            .connected { background: #c6f6d5; color: #22543d; } 
+            .disconnected { background: #fed7d7; color: #742a2a; } 
+            #books { max-height: 400px; overflow-y: auto; } 
+        </style>
+    </head>
+    
+    <body>
+        <h1>📚 Real-time Book Recommendations</h1> 
+        <div class="container">
+            <button id="toggleBtn" onclick="changeStatus()">Start Streaming</button>
+            <div id="status" class="disconnected">Disconnected</div>
+            <div id="books"></div>
+        </div>
+        
+        <script>
+            function changeStatus() {
+                var statusDiv = document.getElementById('status');
+                if (statusDiv.innerText === "Disconnected") {
+                    statusDiv.innerText = "Connected";
+                } else {
+                    statusDiv.innerText = "Disconnected";
+                }
+            }
+        </script>
+
+        <script src="index.js"></script>
+        
+    </body>
+</html>
